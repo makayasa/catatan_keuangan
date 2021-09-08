@@ -1,3 +1,4 @@
+import 'package:catatan_keuangan/app/data/database/database.dart';
 import 'package:catatan_keuangan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +53,10 @@ class HomeView extends GetView<HomeController> {
             height: 15,
           ),
           Pemisah(),
+          ElevatedButton(
+            child: Text('query'),
+            onPressed: () async {},
+          )
         ],
       ),
     );

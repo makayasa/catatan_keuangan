@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class InfoBanner extends StatelessWidget {
+import '../controllers/home_controller.dart';
+
+class InfoBanner extends GetView<HomeController> {
   const InfoBanner({
     Key? key,
   }) : super(key: key);
@@ -30,7 +33,7 @@ class InfoBanner extends StatelessWidget {
                   // mainAxisAlignment: MainAxisAlignment.,
                   children: [
                     Text('Pengeluaran'),
-                    Text('Rp.500,000'),
+                    Text('${controller.tes.value}'),
                   ],
                 ),
                 Column(

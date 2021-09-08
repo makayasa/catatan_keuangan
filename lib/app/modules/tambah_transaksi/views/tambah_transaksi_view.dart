@@ -1,5 +1,6 @@
 import 'package:catatan_keuangan/app/data/database/database.dart';
 import 'package:catatan_keuangan/app/data/models/transaksi_model.dart';
+import 'package:catatan_keuangan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,17 +47,9 @@ class TambahTransaksi extends GetView<TambahTransaksiController> {
           ),
           ElevatedButton(
             child: Text('Simpan Transaksi'),
-            onPressed: () async {
-              print('${controller.tgl.value}');
-              await TransactionDatabase.instance.createTransaksi(
-                TransactionModel(
-                  jenis: controller.jenisTransaksi.value,
-                  jumlah: controller.val.value,
-                  kategori: controller.kategori.value,
-                  tgl: controller.tgl.value,
-                  catatan: controller.catatan.value,
-                ),
-              );
+            onPressed: () {
+              controller.tambahTransaksi();
+              Get.offAllNamed(Routes.HOME);
             },
           )
         ],

@@ -33,7 +33,7 @@ class JenisTransaksi extends GetView<TambahTransaksiController> {
         // print(value);
         controller.jenisTransaksi.value = value!;
       },
-      selectedItem: 'Pengeluaran',
+      // selectedItem: 'Pengeluaran',
     );
   }
 }
