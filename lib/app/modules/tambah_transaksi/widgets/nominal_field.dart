@@ -20,10 +20,9 @@ class NominalField extends GetView<TambahTransaksiController> {
       },
       onChanged: (newVal) {
         if (newVal.length <= 25) {
-          controller.nominal.value = newVal;
+          controller.digit.value = newVal;
         } else {
           controller.moneyMaskedTextController.value = new TextEditingValue(
-            text: controller.nominal.value,
             selection: new TextSelection(
                 baseOffset: controller.maxLength.value,
                 extentOffset: controller.maxLength.value,
@@ -36,7 +35,7 @@ class NominalField extends GetView<TambahTransaksiController> {
           );
         }
         // val.value = moneyMaskedTextController.numberValue.toInt();
-        controller.val.value = controller.moneyMaskedTextController.numberValue.toInt();
+        controller.jumlah.value = controller.moneyMaskedTextController.numberValue.toInt();
       },
       decoration: InputDecoration(
         fillColor: Color(0xffFEFEFF),

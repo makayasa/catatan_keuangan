@@ -6,12 +6,12 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
+  cupertino_icons: ^1.0.2
+  dropdown_search: ^0.6.3
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  dropdown_search: ^0.6.3
   flutter_masked_text2: ^0.9.1
   get: 4.3.8
   http: ^0:13.3
@@ -27,3 +27,14 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
+    - family: DelaGothic
+      fonts:
+        - asset: assets/fonts/DelaGothic/DelaGothicOne-Regular.ttf
+    - family: Togalite
+      fonts:
+        - asset: assets/fonts/Togalite/Togalite-Regular.otf  

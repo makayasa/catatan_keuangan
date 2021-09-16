@@ -1,3 +1,4 @@
+import 'package:catatan_keuangan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -9,10 +10,27 @@ import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 class TambahTransaksiController extends GetxController {
   var jenisTransaksi = ''.obs;
-  var val = 0.obs;
+  var jumlah = 0.obs;
   var kategori = ''.obs;
   var tgl = ''.obs;
   var catatan = ''.obs;
+
+  List<String>? katPemasukan = ['Gaji', 'Bonus', 'Lembur', 'Penjualan', 'Dll'].obs;
+  List<String>? katPengeluaran = ['Transportasi', 'Makan', 'Minum', 'Hiburan', 'Belanja', 'Top-up', 'Dll'].obs;
+  var katKosong = [''].obs;
+
+  kategoriController() {
+    if (jenisTransaksi.value == '') {
+      update();
+      return katKosong;
+    } else if (jenisTransaksi.value == 'Pemasukan') {
+      update();
+      return katPemasukan;
+    } else if (jenisTransaksi.value == 'Pengeluaran') {
+      update();
+      return katPengeluaran;
+    }
+  }
 
   late MoneyMaskedTextController moneyMaskedTextController = MoneyMaskedTextController(
     thousandSeparator: ',',
@@ -21,22 +39,49 @@ class TambahTransaksiController extends GetxController {
     decimalSeparator: "",
     initialValue: 0,
   );
-  var nominal = "".obs;
+  var digit = "".obs;
   var maxLength = 25.obs;
 
   void tambahTransaksi() async {
+    if (jenisTransaksi.value == '' || jumlah.value == 0 || kategori.value == '' || tgl.value == '') {
+      return Get.defaultDialog(
+        title: 'Error',
+        content: Text('Form Belum Lengkap'),
+        confirm: ElevatedButton(
+          child: Text('OK'),
+          style: ElevatedButton.styleFrom(
+            primary: Color(0XFF3B9FC4),
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      );
+    }
     try {
       await TransactionDatabase.instance.createTransaksi(
         TransactionModel(
           jenis: jenisTransaksi.value,
-          jumlah: val.value,
+          jumlah: jumlah.value,
           kategori: kategori.value,
           tgl: tgl.value,
           catatan: catatan.value,
         ),
       );
 
-      Get.defaultDialog(title: '', content: Text('Transaksi Berhasil di simpan'));
+      Get.defaultDialog(
+        title: '',
+        content: Text('Transaksi Berhasil di simpan'),
+        confirm: ElevatedButton(
+          child: Text('tes'),
+          style: ElevatedButton.styleFrom(
+            primary: Color(0XFF3B9FC4),
+          ),
+          onPressed: () {
+            Get.offAllNamed(Routes.HOME);
+          },
+        ),
+      );
     } catch (err) {
       print(err);
       Get.defaultDialog(
@@ -73,32 +118,18 @@ class TambahTransaksiController extends GetxController {
     }
   }
 
-  // void onChangedNominal(String newVal) {
-  //   if (newVal.length <= 25) {
-  //     nominal.value = newVal;
-  //   } else {
-  //     moneyMaskedTextController.value = new TextEditingValue(
-  //       text: nominal.value,
-  //       selection:
-  //           new TextSelection(baseOffset: maxLength.value, extentOffset: maxLength.value, affinity: TextAffinity.downstream, isDirectional: false),
-  //       composing: new TextRange(
-  //         start: 0,
-  //         end: maxLength.value,
-  //       ),
-  //     );
-  //   }
-  //   // val.value = moneyMaskedTextController.numberValue.toInt();
-  //   val.value = moneyMaskedTextController.numberValue.toInt();
-  // }
-
   @override
   void onInit() {
     initializeDateFormatting();
+    kategoriController();
+
     super.onInit();
   }
 
   @override
   void onReady() {
+    kategoriController();
+
     super.onReady();
   }
 

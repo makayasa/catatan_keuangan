@@ -69,10 +69,41 @@ class TransactionDatabase {
   Future<List<TransactionModel>> readAllTransaksi() async {
     final db = await instance.database;
 
-    final orderBy = "${TransaksiFields.id} ASC";
+    final orderBy = "${TransaksiFields.tgl} ASC";
+    // final groupBy = "${TransaksiFields.jenis} Pemasukan";
     final result = await db.query(tableTransaksi, orderBy: orderBy);
 
-    return result.map((e) => TransactionModel.fromJson(e)).toList();
+    // return result.map((e) => TransactionModel.fromJson(e)).toList();
+    return TransactionModel.fromJsonList(result);
+  }
+
+  // Future<List<TransactionModel>> sumPemasukan(String jenis) async {
+  //   var db = await instance.database;
+
+  //   var result = await db.rawQuery("""
+  //   SELECT
+  //     sum(jumlah) as jumlah
+  //   FROM
+  //     transaksi
+  //   WHERE jenis = '${jenis}'
+
+  //   """);
+
+  //   return TransactionModel.fromJsonList(result);
+  // }
+
+  Future<dynamic> sumJumlah(String jenis) async {
+    var db = await instance.database;
+    var result = await db.rawQuery(""" 
+    SELECT 
+      sum(jumlah) as jumlah
+    FROM
+      transaksi
+    WHERE jenis = '${jenis}'
+
+    """);
+    print(result);
+    return result.toList();
   }
 
   Future<int> updateTransaksi(TransactionModel transaksi) async {

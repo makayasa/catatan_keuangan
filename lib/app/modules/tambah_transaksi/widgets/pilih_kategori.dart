@@ -11,24 +11,27 @@ class PilihKategori extends GetView<TambahTransaksiController> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<String>(
-      label: "Pilih Kategori",
-      hint: "Pilih Kategori",
-      mode: Mode.MENU,
-      dropdownSearchDecoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
+    // var asu = controller.jenisTransaksi.value;
+    return Obx(
+      () => DropdownSearch<String>(
+        label: "Pilih Kategori",
+        hint: "Pilih Kategori",
+        mode: Mode.MENU,
+        dropdownSearchDecoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 10,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        showSelectedItem: true,
+        items: controller.kategoriController(),
+        onChanged: (value) {
+          controller.kategori.value = value!;
+        },
       ),
-      showSelectedItem: true,
-      items: ['Gojek', 'Makan'],
-      onChanged: (value) {
-        controller.kategori.value = value!;
-      },
     );
   }
 }

@@ -1,6 +1,3 @@
-import 'package:catatan_keuangan/app/data/database/database.dart';
-import 'package:catatan_keuangan/app/data/models/transaksi_model.dart';
-import 'package:catatan_keuangan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +8,8 @@ import '../widgets/pilih_kategori.dart';
 import '../widgets/tanggal.dart';
 import '../widgets/catatan.dart';
 
-class TambahTransaksi extends GetView<TambahTransaksiController> {
-  const TambahTransaksi({Key? key}) : super(key: key);
+class TambahTransaksiView extends GetView<TambahTransaksiController> {
+  const TambahTransaksiView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,39 +17,77 @@ class TambahTransaksi extends GetView<TambahTransaksiController> {
       appBar: AppBar(
         title: Text('Tambah Transaksi'),
         centerTitle: true,
-        elevation: 1,
+        elevation: 0,
       ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        children: [
-          JenisTransaksi(),
-          SizedBox(
-            height: 10,
+      body: SafeArea(
+        child: Container(
+          // margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+
+          decoration: BoxDecoration(
+            // borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color(0XFF3BC460),
+                Color(0XFF3BC4A4),
+              ],
+            ),
           ),
-          NominalField(),
-          SizedBox(
-            height: 10,
+          child: ListView(
+            padding: EdgeInsets.only(left: 20, right: 20, top: 75),
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Color(0XFFF8F5F1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: JenisTransaksi(),
+              ),
+              SizedBox(
+                height: 16.5,
+              ),
+              NominalField(),
+              SizedBox(
+                height: 16.5,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Color(0XFFF8F5F1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: PilihKategori(),
+              ),
+              SizedBox(
+                height: 16.5,
+              ),
+              PilihTanggal(),
+              SizedBox(
+                height: 16.5,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Color(0XFFF8F5F1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Catatan(),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              ElevatedButton(
+                child: Text('Simpan Transaksi'),
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0XFF3B9FC4),
+                ),
+                onPressed: () {
+                  controller.tambahTransaksi();
+                  //*Route ke menu ada di Controller
+                },
+              ),
+            ],
           ),
-          PilihKategori(),
-          SizedBox(
-            height: 10,
-          ),
-          Tanggal(),
-          SizedBox(
-            height: 10,
-          ),
-          Catatan(),
-          SizedBox(
-            height: 35,
-          ),
-          ElevatedButton(
-            child: Text('Simpan Transaksi'),
-            onPressed: () {
-              controller.tambahTransaksi();
-              Get.offAllNamed(Routes.HOME);
-            },
-          )
-        ],
+        ),
       ),
     );
   }

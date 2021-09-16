@@ -4,8 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:get/get_connect/http/src/utils/utils.dart';
-
 final String tableTransaksi = 'transaksi';
 
 class TransaksiFields {

@@ -14,6 +14,7 @@ class JenisTransaksi extends GetView<TambahTransaksiController> {
     return DropdownSearch<String>(
       label: "Jenis Transaksi",
       hint: "Pilih Jenis Transaksi",
+
       mode: Mode.MENU,
       dropdownSearchDecoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
@@ -32,6 +33,8 @@ class JenisTransaksi extends GetView<TambahTransaksiController> {
       onChanged: (value) {
         // print(value);
         controller.jenisTransaksi.value = value!;
+
+        print(controller.jenisTransaksi.value);
       },
       // selectedItem: 'Pengeluaran',
     );
