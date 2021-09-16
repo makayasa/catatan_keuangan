@@ -25,7 +25,7 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: Color(0XFF3B9FC4),
         child: Icon(Icons.add),
         onPressed: () {
-          Get.toNamed(Routes.TT);
+          Get.toNamed(Routes.tambahTransaksi);
         },
       ),
       body: SafeArea(

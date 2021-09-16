@@ -99,7 +99,7 @@ class TransactionDatabase {
       sum(jumlah) as jumlah
     FROM
       transaksi
-    WHERE jenis = '${jenis}'
+    WHERE jenis = '$jenis'
 
     """);
     print(result);

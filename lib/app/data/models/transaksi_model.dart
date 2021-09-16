@@ -60,7 +60,7 @@ class TransactionModel {
       };
 
   static List<TransactionModel> fromJsonList(List list) {
-    if (list.length == 0) return List<TransactionModel>.empty();
+    if (list.isEmpty) return List<TransactionModel>.empty();
     return list.map((item) => TransactionModel.fromJson(item)).toList();
   }
 

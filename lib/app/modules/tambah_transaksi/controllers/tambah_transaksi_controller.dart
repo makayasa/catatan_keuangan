@@ -78,7 +78,7 @@ class TambahTransaksiController extends GetxController {
             primary: Color(0XFF3B9FC4),
           ),
           onPressed: () {
-            Get.offAllNamed(Routes.HOME);
+            Get.offAllNamed(Routes.home);
           },
         ),
       );

@@ -12,21 +12,21 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const initial = Routes.home;
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
+      name: _Paths.home,
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.TT,
+      name: _Paths.tambahTransaksi,
       page: () => TambahTransaksiView(),
       binding: TambahTransaksiBinding(),
     ),
     GetPage(
-      name: _Paths.DETAIL_TRANSAKSI,
+      name: _Paths.detailTransaksi,
       page: () => DetailTransaksiView(),
       binding: DetailTransaksiBinding(),
     ),
