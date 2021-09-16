@@ -40,10 +40,12 @@ class HomeController extends GetxController {
   }
 
   Future hitungSaldo() async {
-    var saldo;
+    dynamic saldo = 0;
     var dataPemasukan = (await TransactionDatabase.instance.sumJumlah('Pemasukan'))[0]['jumlah'];
     var dataPengeluaran = (await TransactionDatabase.instance.sumJumlah('Pengeluaran'))[0]['jumlah'];
-    saldo = (dataPemasukan != null ? dataPemasukan : 0) - (dataPengeluaran != null ? dataPengeluaran : 0);
+    // saldo = (dataPemasukan != null ? dataPemasukan : 0) - (dataPengeluaran != null ? dataPengeluaran : 0);
+    // saldo = saldo ?? (dataPemasukan - dataPengeluaran);
+    saldo = (dataPemasukan ?? 0) - (dataPengeluaran ?? 0);
     update();
     return totalSaldo = saldo;
   }
@@ -66,7 +68,7 @@ class HomeController extends GetxController {
 
   @override
   void onReady() {
-    super.onReady();
+    // super.onReady();
   }
 
   @override

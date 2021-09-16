@@ -22,13 +22,13 @@ class NominalField extends GetView<TambahTransaksiController> {
         if (newVal.length <= 25) {
           controller.digit.value = newVal;
         } else {
-          controller.moneyMaskedTextController.value = new TextEditingValue(
-            selection: new TextSelection(
+          controller.moneyMaskedTextController.value = TextEditingValue(
+            selection: TextSelection(
                 baseOffset: controller.maxLength.value,
                 extentOffset: controller.maxLength.value,
                 affinity: TextAffinity.downstream,
                 isDirectional: false),
-            composing: new TextRange(
+            composing: TextRange(
               start: 0,
               end: controller.maxLength.value,
             ),
