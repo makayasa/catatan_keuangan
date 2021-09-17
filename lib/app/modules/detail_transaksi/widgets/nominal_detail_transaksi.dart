@@ -37,7 +37,7 @@ class NominalFieldDetailTransaksi extends GetView<DetailTransaksiController> {
               );
             }
 
-            ccc.jumlah = ccc.moneyMaskedTextController.numberValue.toInt();
+            ccc.jumlah.value = ccc.moneyMaskedTextController.numberValue.toInt();
             print(ccc.welcome.value);
           },
           decoration: InputDecoration(

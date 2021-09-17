@@ -47,6 +47,7 @@ class TambahTransaksiController extends GetxController {
       return Get.defaultDialog(
         title: 'Error',
         content: Text('Form Belum Lengkap'),
+        barrierDismissible: false,
         confirm: ElevatedButton(
           child: Text('OK'),
           style: ElevatedButton.styleFrom(
@@ -72,6 +73,7 @@ class TambahTransaksiController extends GetxController {
       Get.defaultDialog(
         title: '',
         content: Text('Transaksi Berhasil di simpan'),
+        barrierDismissible: false,
         confirm: ElevatedButton(
           child: Text('tes'),
           style: ElevatedButton.styleFrom(

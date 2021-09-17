@@ -14,17 +14,17 @@ class DetailTransaksiController extends GetxController {
 
   final money = NumberFormat("#,##0", "in_ID");
 
-  String? jenis;
-  int? jumlah;
-  String? kategori;
-  String? tgl;
-  String? catatan;
-
   // var jenis = ''.obs;
-  // var jumlah = 0.obs;
-  // var kategori = ''.obs;
-  // var tgl = ''.obs;
-  // var catatan = ''.obs;
+  // int? jumlah;
+  // String? kategori;
+  // String? tgl;
+  // String? catatan;
+
+  var jenis = ''.obs;
+  var jumlah = 0.obs;
+  var kategori = ''.obs;
+  var tgl = ''.obs;
+  var catatan = ''.obs;
   // var editMode = false.obs;
 
   var digit = ''.obs;
@@ -33,11 +33,11 @@ class DetailTransaksiController extends GetxController {
   Future getData(int id) async {
     detailData = await TransactionDatabase.instance.readTransaksi(id);
 
-    jenis = detailData.jenis!;
-    jumlah = detailData.jumlah!;
-    kategori = detailData.kategori!;
-    tgl = detailData.tgl!;
-    catatan = detailData.catatan!;
+    jenis.value = detailData.jenis!;
+    jumlah.value = detailData.jumlah!;
+    kategori.value = detailData.kategori!;
+    tgl.value = detailData.tgl!;
+    catatan.value = detailData.catatan!;
 
     _selectedDate = DateTime.parse(detailData.tgl!);
 
@@ -89,7 +89,7 @@ class DetailTransaksiController extends GetxController {
             affinity: TextAffinity.upstream,
           ),
         );
-      tgl = _selectedDate.toString();
+      tgl.value = _selectedDate.toString();
     }
   }
 
@@ -98,13 +98,11 @@ class DetailTransaksiController extends GetxController {
   var katKosong = [''].obs;
 
   kategoriController() {
-    if (jenis == '') {
-      update();
+    if (jenis.value == '') {
       return katKosong;
-    } else if (jenis == 'Pemasukan') {
-      update();
+    } else if (jenis.value == 'Pemasukan') {
       return katPemasukan;
-    } else if (jenis == 'Pengeluaran') {
+    } else if (jenis.value == 'Pengeluaran') {
       return katPengeluaran;
     }
   }
@@ -117,6 +115,7 @@ class DetailTransaksiController extends GetxController {
       Get.defaultDialog(
         title: '',
         content: Text('Transaksi Berhasil di Hapus'),
+        barrierDismissible: false,
         confirm: ElevatedButton(
           child: Text('OK'),
           onPressed: () {
@@ -134,16 +133,17 @@ class DetailTransaksiController extends GetxController {
       await TransactionDatabase.instance.updateTransaksi(
         TransactionModel(
           id: Get.arguments,
-          jenis: jenis,
-          jumlah: jumlah,
-          kategori: kategori,
-          tgl: tgl,
-          catatan: catatan,
+          jenis: jenis.value,
+          jumlah: jumlah.value,
+          kategori: kategori.value,
+          tgl: tgl.value,
+          catatan: catatan.value,
         ),
       );
       Get.defaultDialog(
         title: '',
         content: Text('Transaksi Berhasil di Ubah'),
+        barrierDismissible: false,
         confirm: ElevatedButton(
           child: Text('OK'),
           onPressed: () {

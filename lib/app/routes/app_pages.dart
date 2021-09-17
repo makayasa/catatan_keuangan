@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 import 'package:catatan_keuangan/app/modules/detail_transaksi/bindings/detail_transaksi_binding.dart';
-import 'package:catatan_keuangan/app/modules/detail_transaksi/bindings/detail_transaksi_binding.dart';
-import 'package:catatan_keuangan/app/modules/detail_transaksi/views/detail_transaksi_view.dart';
 import 'package:catatan_keuangan/app/modules/detail_transaksi/views/detail_transaksi_view.dart';
 import 'package:catatan_keuangan/app/modules/home/bindings/home_binding.dart';
 import 'package:catatan_keuangan/app/modules/home/views/home_view.dart';

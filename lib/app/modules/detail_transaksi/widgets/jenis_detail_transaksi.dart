@@ -25,12 +25,12 @@ class DetailJenisTransaksi extends GetView<DetailTransaksiController> {
           ),
           showSelectedItem: true,
           items: ['Pengeluaran', 'Pemasukan'],
-          selectedItem: ccc.jenis,
+          selectedItem: ccc.jenis.value,
           itemAsString: (item) {
             return item;
           },
           onChanged: (value) {
-            ccc.jenis = value!;
+            ccc.jenis.value = value!;
           },
         );
       },
