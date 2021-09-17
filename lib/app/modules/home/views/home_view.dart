@@ -28,6 +28,7 @@ class HomeView extends GetView<HomeController> {
           Get.toNamed(Routes.tambahTransaksi);
         },
       ),
+      backgroundColor: Color(0XFFf8f5f1),
       body: SafeArea(
         child: Column(
           children: [

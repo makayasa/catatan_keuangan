@@ -12,12 +12,12 @@ class NominalField extends GetView<TambahTransaksiController> {
       keyboardType: TextInputType.number,
       controller: controller.moneyMaskedTextController,
       maxLines: 1,
-      validator: (value) {
-        if (controller.moneyMaskedTextController.numberValue == 0) {
-          return 'Masukan Nominal';
-        }
-        return null;
-      },
+      // validator: (value) {
+      //   if (controller.moneyMaskedTextController.numberValue == 0) {
+      //     return 'Masukan Nominal';
+      //   }
+      //   return null;
+      // },
       onChanged: (newVal) {
         if (newVal.length <= 25) {
           controller.digit.value = newVal;

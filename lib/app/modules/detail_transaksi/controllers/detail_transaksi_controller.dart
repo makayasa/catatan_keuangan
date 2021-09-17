@@ -14,9 +14,6 @@ class DetailTransaksiController extends GetxController {
 
   final money = NumberFormat("#,##0", "in_ID");
 
-  //* variable untuk ditampilkan ke view
-  var judul = 'Detail Catatan'.obs;
-
   var jenis = ''.obs;
   var jumlah = 0.obs;
   var kategori = ''.obs;
@@ -36,16 +33,59 @@ class DetailTransaksiController extends GetxController {
     tgl.value = detailData.tgl!;
     catatan.value = detailData.catatan!;
 
+    _selectedDate = DateTime.parse(detailData.tgl!);
+
+    MoneyMaskedTextController _moneyMaskedTextController = MoneyMaskedTextController(
+      thousandSeparator: ',',
+      leftSymbol: 'RP. ',
+      precision: 0,
+      decimalSeparator: "",
+      // initialValue: detailData.jumlah!.toDouble(),
+      initialValue: (detailData.jumlah ?? 0).toDouble(),
+    );
+
+    TextEditingController _tanggalFormatted = TextEditingController(
+      text: DateFormat.yMMMMEEEEd('in').format(DateTime.parse(detailData.tgl!)),
+    );
+
+    TextEditingController _catatanController = TextEditingController(
+      text: detailData.catatan,
+    );
+
+    moneyMaskedTextController = _moneyMaskedTextController;
+    tanggalFormatted = _tanggalFormatted;
+    catatanController = _catatanController;
     update();
   }
 
-  late MoneyMaskedTextController moneyMaskedTextController = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    leftSymbol: 'RP. ',
-    precision: 0,
-    decimalSeparator: "",
-    initialValue: detailData.jumlah!.toDouble(),
-  );
+  MoneyMaskedTextController moneyMaskedTextController = MoneyMaskedTextController();
+  TextEditingController tanggalFormatted = TextEditingController();
+  TextEditingController catatanController = TextEditingController();
+
+  DateTime? _selectedDate;
+
+  selecDate(BuildContext context) async {
+    DateTime? newSelectedDate = await showDatePicker(
+      context: context,
+      // locale: Locale('id' 'ID'),
+      initialDate: _selectedDate != null ? _selectedDate! : DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2040),
+    );
+
+    if (newSelectedDate != null) {
+      _selectedDate = newSelectedDate;
+      tanggalFormatted
+        ..text = DateFormat.yMMMMEEEEd('in').format(_selectedDate!)
+        ..selection = TextSelection.fromPosition(
+          TextPosition(
+            offset: tanggalFormatted.text.length,
+            affinity: TextAffinity.upstream,
+          ),
+        );
+      tgl.value = _selectedDate.toString();
+    }
+  }
 
   List<String>? katPemasukan = ['Gaji', 'Bonus', 'Lembur', 'Penjualan', 'Dll'].obs;
   List<String>? katPengeluaran = ['Transportasi', 'Makan', 'Minum', 'Hiburan', 'Belanja', 'Top-up', 'Dll'].obs;
@@ -53,13 +93,10 @@ class DetailTransaksiController extends GetxController {
 
   kategoriController() {
     if (jenis.value == '') {
-      update();
       return katKosong;
     } else if (jenis.value == 'Pemasukan') {
-      update();
       return katPemasukan;
     } else if (jenis.value == 'Pengeluaran') {
-      update();
       return katPengeluaran;
     }
   }
@@ -78,6 +115,14 @@ class DetailTransaksiController extends GetxController {
               Get.offAllNamed(Routes.home);
             },
           ));
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  ubahTransaksi() async {
+    try {
+      await TransactionDatabase.instance.updateTransaksi(detailData);
     } catch (err) {
       print(err);
     }

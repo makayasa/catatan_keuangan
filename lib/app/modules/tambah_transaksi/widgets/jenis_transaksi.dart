@@ -5,10 +5,6 @@ import 'package:get/get.dart';
 import '../controllers/tambah_transaksi_controller.dart';
 
 class JenisTransaksi extends GetView<TambahTransaksiController> {
-  const JenisTransaksi({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>(

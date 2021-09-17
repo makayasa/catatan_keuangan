@@ -4,18 +4,16 @@ import 'package:get/get.dart';
 
 import '../controllers/detail_transaksi_controller.dart';
 
-class DetailJenisTransaksi extends GetView<DetailTransaksiController> {
-  const DetailJenisTransaksi({Key? key}) : super(key: key);
-
+class KategoriDetailTransaksi extends GetView<DetailTransaksiController> {
   @override
   Widget build(BuildContext context) {
-    return Obx(() => DropdownSearch<String>(
-          label: "Jenis Transaksi",
-          hint: "Pilih Jenis Transaksi",
+    return GetBuilder<DetailTransaksiController>(
+      init: Get.put(DetailTransaksiController()),
+      builder: (ccc) {
+        return DropdownSearch<String>(
+          label: "Pilih Kagetori",
+          hint: "Pilih Kategori",
           mode: Mode.MENU,
-          showSelectedItem: true,
-          items: ['Pengeluaran', 'Pemasukan'],
-          selectedItem: '${controller.detailData.jenis}',
           dropdownSearchDecoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
               horizontal: 20,
@@ -25,12 +23,14 @@ class DetailJenisTransaksi extends GetView<DetailTransaksiController> {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          itemAsString: (item) {
-            return item;
-          },
+          showSelectedItem: true,
+          items: ccc.kategoriController(),
+          selectedItem: ccc.kategori.value,
           onChanged: (value) {
-            controller.detailData.jenis = value!;
+            ccc.kategori.value = value!;
           },
-        ));
+        );
+      },
+    );
   }
 }

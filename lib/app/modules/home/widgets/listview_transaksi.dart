@@ -1,3 +1,4 @@
+import 'package:catatan_keuangan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -57,7 +58,10 @@ class ListViewTransaksi extends GetView<HomeController> {
                         left: 12,
                         child: Text(
                           DateFormat.yMMMMd('in').format(DateTime.parse(dataTransaksi.tgl!)),
-                          style: TextStyle(fontSize: 14, color: Color(0XFFf8f5f1)),
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0XFFf8f5f1),
+                          ),
                         ),
                       ),
                       Positioned(
@@ -109,7 +113,9 @@ class ListViewTransaksi extends GetView<HomeController> {
                               Icons.edit,
                               size: 20,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed(Routes.detailTransaksi, arguments: dataTransaksi.id);
+                            },
                           ),
                         ),
                       ),
