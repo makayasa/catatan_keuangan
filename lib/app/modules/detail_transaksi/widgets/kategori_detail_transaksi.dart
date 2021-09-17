@@ -25,9 +25,9 @@ class KategoriDetailTransaksi extends GetView<DetailTransaksiController> {
           ),
           showSelectedItem: true,
           items: ccc.kategoriController(),
-          selectedItem: ccc.kategori.value,
+          selectedItem: ccc.kategori,
           onChanged: (value) {
-            ccc.kategori.value = value!;
+            ccc.kategori = value!;
           },
         );
       },

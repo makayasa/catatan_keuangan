@@ -19,7 +19,7 @@ class CatatanDetailTransaksi extends GetView<DetailTransaksiController> {
             ),
           ),
           onChanged: (value) {
-            ccc.catatan.value = value;
+            ccc.catatan = value;
           },
         );
       },
