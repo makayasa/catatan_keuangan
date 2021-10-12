@@ -1,3 +1,4 @@
+import 'package:catatan_keuangan/app/components/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,9 +14,9 @@ void main() {
       theme: ThemeData(
         fontFamily: 'Montserrat',
         appBarTheme: AppBarTheme(
-          backgroundColor: Color(0XFF3BC460),
+          backgroundColor: kContentColorLightTheme,
           titleTextStyle: TextStyle(
-            color: Color(0XFFf8f5f1),
+            color: kPrimaryColor,
             fontFamily: 'Montserrat',
             fontSize: 22,
           ),

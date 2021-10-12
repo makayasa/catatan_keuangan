@@ -1,3 +1,5 @@
+import 'package:catatan_keuangan/app/components/constants.dart';
+import 'package:catatan_keuangan/app/components/default_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +18,7 @@ class InfoBanner extends GetView<HomeController> {
           margin: EdgeInsets.symmetric(horizontal: 20),
           height: 80,
           decoration: BoxDecoration(
-            color: Color(0XFF3B9FC4),
+            color: kBlue,
             // gradient: LinearGradient(
             //   begin: Alignment.centerLeft,
             //   end: Alignment.centerRight,
@@ -31,28 +33,27 @@ class InfoBanner extends GetView<HomeController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('${controller.tanggalSekarang}'),
-                SizedBox(
-                  height: 15,
-                ),
+                DefText(
+                  '${controller.tanggalSekarang}',
+                  fontWeight: FontWeight.bold,
+                ).semilarge,
+                SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       // mainAxisAlignment: MainAxisAlignment.,
                       children: [
-                        Text('Pemasukan'),
+                        DefText('Pemasukan').normal,
                         Container(
                           height: 25,
                           width: 100,
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: Text(
-                              controller.totalPemasukan == null ? 'loading' : 'Rp. ' + controller.money.format(controller.totalPemasukan),
-                              style: TextStyle(
-                                color: Color(0XFF23dc65),
-                              ),
-                            ),
+                            child: DefText(
+                              controller.totalPemasukan == null ? 'loading' : 'Rp.' + controller.money.format(controller.totalPemasukan),
+                              color: kGreen,
+                            ).normal,
                           ),
                         ),
                         // Text('${controller.tes.value}'),
@@ -61,19 +62,17 @@ class InfoBanner extends GetView<HomeController> {
                     Column(
                       // mainAxisAlignment: MainAxisAlignment.,
                       children: [
-                        Text('Pengeluaran'),
+                        DefText('Pengeluaran').normal,
                         // Text(abc.jumlah == null ? 'loading' : '${abc.jumlah}'),
                         Container(
                           height: 25,
                           width: 100,
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: Text(
+                            child: DefText(
                               controller.totalPengeluaran == null ? 'loading' : 'Rp. ' + controller.money.format(controller.totalPengeluaran),
-                              style: TextStyle(
-                                color: Color(0XFFC93661),
-                              ),
-                            ),
+                              color: kRed,
+                            ).normal,
                           ),
                         ),
                       ],
@@ -81,15 +80,18 @@ class InfoBanner extends GetView<HomeController> {
                     Column(
                       // mainAxisAlignment: MainAxisAlignment.,
                       children: [
-                        Text('Saldo'),
+                        DefText('Saldo').normal,
                         Container(
                           height: 25,
                           width: 100,
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: Text(
+                            child: DefText(
                               controller.totalSaldo == null ? 'loading' : 'Rp. ' + controller.money.format(controller.totalSaldo),
-                            ),
+                            ).normal,
+                            // child: Text(
+                            //   controller.totalSaldo == null ? 'loading' : 'Rp. ' + controller.money.format(controller.totalSaldo),
+                            // ),
                           ),
                         ),
                       ],

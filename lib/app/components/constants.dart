@@ -13,3 +13,7 @@ const kHelpColor = Color(0xFF0096c7);
 const kInactiveColor = Color(0xFFa6a6a6);
 const kBgWhite = Color(0xFFf7f8f8);
 const kBgBlack = Color(0xFF191508);
+
+const kGreen = Color(0XFF23dc65);
+const kRed = Color(0XFFC93661);
+const kBlue = Color(0XFF3B9FC4);

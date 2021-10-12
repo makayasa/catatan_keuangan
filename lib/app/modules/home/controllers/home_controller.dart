@@ -1,5 +1,6 @@
 import 'package:catatan_keuangan/app/data/models/transaksi_model.dart';
 import 'package:catatan_keuangan/app/modules/detail_transaksi/controllers/detail_transaksi_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -56,6 +57,20 @@ class HomeController extends GetxController {
     tanggalSekarang.value = DateFormat.yMMMMEEEEd('in').format(_tanggal!);
   }
 
+  late Offset offset;
+
+  var isDragging = false.obs;
+
+  var newOffsetX = 0.0.obs;
+  var newOffsetY = 0.0.obs;
+
+  void updatePosition(PointerMoveEvent pointerMoveEvent) {
+    newOffsetX.value = offset.dx + pointerMoveEvent.delta.dx;
+    newOffsetY.value = offset.dy + pointerMoveEvent.delta.dy;
+
+    offset = Offset(newOffsetX.value, newOffsetY.value);
+  }
+
   @override
   void onInit() {
     refreshList();
@@ -65,6 +80,7 @@ class HomeController extends GetxController {
     initializeDateFormatting();
     tanggalSekarangMethod();
     super.onInit();
+    offset = Offset(200, 70);
   }
 
   @override
