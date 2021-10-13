@@ -18,7 +18,7 @@ class InfoBanner extends GetView<HomeController> {
           margin: EdgeInsets.symmetric(horizontal: 20),
           height: 80,
           decoration: BoxDecoration(
-            color: kBlue,
+            color: kSecondaryColor,
             // gradient: LinearGradient(
             //   begin: Alignment.centerLeft,
             //   end: Alignment.centerRight,
@@ -52,7 +52,7 @@ class InfoBanner extends GetView<HomeController> {
                             fit: BoxFit.scaleDown,
                             child: DefText(
                               controller.totalPemasukan == null ? 'loading' : 'Rp.' + controller.money.format(controller.totalPemasukan),
-                              color: kGreen,
+                              color: kPrimaryColor,
                             ).normal,
                           ),
                         ),

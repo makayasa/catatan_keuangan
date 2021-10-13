@@ -14,9 +14,9 @@ void main() {
       theme: ThemeData(
         fontFamily: 'Montserrat',
         appBarTheme: AppBarTheme(
-          backgroundColor: kContentColorLightTheme,
+          backgroundColor: kPrimaryColor,
           titleTextStyle: TextStyle(
-            color: kPrimaryColor,
+            color: kBgBlack,
             fontFamily: 'Montserrat',
             fontSize: 22,
           ),

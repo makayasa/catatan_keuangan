@@ -1,3 +1,5 @@
+import 'package:catatan_keuangan/app/components/constants.dart';
+import 'package:catatan_keuangan/app/components/default_text.dart';
 import 'package:catatan_keuangan/app/modules/detail_transaksi/widgets/catatan_detail_transaksi.dart';
 import 'package:catatan_keuangan/app/modules/detail_transaksi/widgets/jenis_detail_transaksi.dart';
 import 'package:catatan_keuangan/app/modules/detail_transaksi/widgets/kategori_detail_transaksi.dart';
@@ -13,33 +15,33 @@ class DetailTransaksiView extends GetView<DetailTransaksiController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DetailTransaksiView'),
-        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kBgBlack,
+          ),
+        ),
+        title: DefText(
+          'Detail Transaksi',
+          color: kBgBlack,
+          fontWeight: FontWeight.bold,
+        ).large,
         elevation: 0,
       ),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(15),
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color(0XFF3BC460),
-                Color(0XFF3BC4A4),
-              ],
-            ),
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 30,
+            left: 15,
+            right: 15,
+            bottom: 20,
           ),
-          child: ListView(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 75),
+          child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0XFFF8F5F1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: DetailJenisTransaksi(),
-              ),
+              DetailJenisTransaksi(),
               SizedBox(
                 height: 16.5,
               ),
@@ -47,13 +49,7 @@ class DetailTransaksiView extends GetView<DetailTransaksiController> {
               SizedBox(
                 height: 16.5,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0XFFF8F5F1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: KategoriDetailTransaksi(),
-              ),
+              KategoriDetailTransaksi(),
               SizedBox(
                 height: 15,
               ),
@@ -61,16 +57,11 @@ class DetailTransaksiView extends GetView<DetailTransaksiController> {
               SizedBox(
                 height: 16.5,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0XFFF8F5F1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: CatatanDetailTransaksi(),
-              ),
+              CatatanDetailTransaksi(),
               SizedBox(
                 height: 35,
               ),
+              SizedBox(height: 75),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

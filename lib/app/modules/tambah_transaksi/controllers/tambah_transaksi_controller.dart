@@ -1,3 +1,5 @@
+import 'package:catatan_keuangan/app/components/constants.dart';
+import 'package:catatan_keuangan/app/components/default_text.dart';
 import 'package:catatan_keuangan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -46,7 +48,9 @@ class TambahTransaksiController extends GetxController {
     if (jenisTransaksi.value == '' || jumlah.value == 0 || kategori.value == '' || tgl.value == '') {
       return Get.defaultDialog(
         title: 'Error',
-        content: Text('Form Belum Lengkap'),
+        content: DefText('Form Belum Lengkap', color: kErrorColor).large,
+        // content: Text('Form Belum Lengkap'),
+        backgroundColor: kBgWhite,
         barrierDismissible: false,
         confirm: ElevatedButton(
           child: Text('OK'),

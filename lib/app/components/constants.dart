@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xFFc9a73d);
-const kPrimaryAccentsColor = Color(0xFFf4edd6);
-const kSecondaryColor = Color(0xFF4d4f4a);
-const kContentColorLightTheme = Color(0xFF191508);
-const kContentColorDarkTheme = Color(0xFFF5FCF9);
+const kPrimaryColor = Color(0xFF26D9B2);
+const kSecondaryColor = Color(0xFF26A7D9);
+const kThirdColor = Color(0xFF26D958);
+const kPrimaryColorAccent = Color(0xFF6F1C24);
+const kSecondaryColorAccent = Color(0xFF6F3D1C);
+const kThirdColorAccent = Color(0xFF6F1C4E);
 const kWarninngColor = Color(0xFFF3BB1C);
 const kErrorColor = Color(0xFFF03738);
 const kSuccessColor = Color(0xFF3dc9a7);

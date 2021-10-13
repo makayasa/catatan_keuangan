@@ -1,3 +1,5 @@
+import 'package:catatan_keuangan/app/components/constants.dart';
+import 'package:catatan_keuangan/app/components/default_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,35 +17,35 @@ class TambahTransaksiView extends GetView<TambahTransaksiController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tambah Transaksi'),
-        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kBgBlack,
+          ),
+        ),
+        title: DefText(
+          'Tambah Transaksi',
+          color: kBgBlack,
+          fontWeight: FontWeight.bold,
+        ).large,
         elevation: 0,
       ),
+      backgroundColor: kBgWhite,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Container(
-          // margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-
-          decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(15),
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color(0XFF3BC460),
-                Color(0XFF3BC4A4),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 30,
+            left: 15,
+            right: 15,
+            bottom: 20,
           ),
-          child: ListView(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 75),
+          child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0XFFF8F5F1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: JenisTransaksi(),
-              ),
+              JenisTransaksi(),
               SizedBox(
                 height: 16.5,
               ),
@@ -51,13 +53,7 @@ class TambahTransaksiView extends GetView<TambahTransaksiController> {
               SizedBox(
                 height: 16.5,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0XFFF8F5F1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: PilihKategori(),
-              ),
+              PilihKategori(),
               SizedBox(
                 height: 16.5,
               ),
@@ -65,16 +61,11 @@ class TambahTransaksiView extends GetView<TambahTransaksiController> {
               SizedBox(
                 height: 16.5,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0XFFF8F5F1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Catatan(),
-              ),
+              Catatan(),
               SizedBox(
                 height: 35,
               ),
+              Spacer(),
               ElevatedButton(
                 child: Text('Simpan Transaksi'),
                 style: ElevatedButton.styleFrom(

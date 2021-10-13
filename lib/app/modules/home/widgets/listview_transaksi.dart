@@ -39,7 +39,7 @@ class ListViewTransaksi extends GetView<HomeController> {
                 ),
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(15),
                   boxShadow: [
                     BoxShadow(
@@ -93,7 +93,7 @@ class ListViewTransaksi extends GetView<HomeController> {
                           fit: BoxFit.scaleDown,
                           child: DefText(
                             'Rp. ' + controller.money.format(dataTransaksi.jumlah),
-                            color: dataTransaksi.jenis == 'Pemasukan' ? kGreen : kRed,
+                            color: dataTransaksi.jenis == 'Pemasukan' ? kBgBlack : kRed,
                           ).semilarge,
                           // child: Text(
                           //   'Rp. ' + controller.money.format(dataTransaksi.jumlah),

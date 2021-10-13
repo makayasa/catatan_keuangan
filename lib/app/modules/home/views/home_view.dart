@@ -23,7 +23,12 @@ class HomeView extends GetView<HomeController> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Catatan Keuangan'),
+            // title: Text('Catatan Keuangan'),
+            title: DefText(
+              'Catatan Keuangan',
+              color: kBgBlack,
+              fontWeight: FontWeight.bold,
+            ).large,
             centerTitle: true,
             elevation: 0,
           ),
@@ -46,7 +51,7 @@ class HomeView extends GetView<HomeController> {
                       Container(
                         height: size.height * 0.15 - 27,
                         decoration: BoxDecoration(
-                          color: kContentColorLightTheme,
+                          color: kPrimaryColor,
                           // gradient: LinearGradient(
                           //   begin: Alignment.topCenter,
                           //   end: Alignment.bottomCenter,
